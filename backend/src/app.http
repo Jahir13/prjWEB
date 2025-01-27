@@ -1,0 +1,85 @@
+### Registrar un nuevo usuario
+POST http://localhost:3000/users/register
+Content-Type: application/json
+
+{
+    "name": "Jahir Rocha",
+    "email": "jahir@example.com",
+    "password": "password123"
+}
+
+### Autenticar un usuario
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "email": "jahir@example.com",
+    "password": "password123"
+}
+
+### Obtener todos los productos (protegido)
+GET http://localhost:3000/products
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczNzk1MjA5MSwiZXhwIjoxNzM3OTU1NjkxfQ.UY1W3yPk0l0-bC3dg4NpaMXUJ_unGfNwaMmFDOaFdjI
+
+### Obtener un producto por ID (protegido)
+GET http://localhost:3000/products/67970ba77926d4dded38be0e
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczNzk1MjA5MSwiZXhwIjoxNzM3OTU1NjkxfQ.UY1W3yPk0l0-bC3dg4NpaMXUJ_unGfNwaMmFDOaFdjI
+
+### Crear un nuevo producto (protegido)
+POST http://localhost:3000/products
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczNzk1MjA5MSwiZXhwIjoxNzM3OTU1NjkxfQ.UY1W3yPk0l0-bC3dg4NpaMXUJ_unGfNwaMmFDOaFdjI
+Content-Type: application/json
+
+{
+    "name": "Tea Chi",
+    "description": "Café frío pasado por un filtro de goteo durante 12 horas.",
+    "price": 4,
+    "category": "Bebidas Frías",
+    "image": "https://example.com/iced-americano.jpg"
+}
+
+### Actualizar un producto (protegido)
+PUT http://localhost:3000/products/67970ba77926d4dded38be0e
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczNzk1MjA5MSwiZXhwIjoxNzM3OTU1NjkxfQ.UY1W3yPk0l0-bC3dg4NpaMXUJ_unGfNwaMmFDOaFdjI
+Content-Type: application/json
+
+{
+    "price": 5.50
+}
+
+### Eliminar un producto (protegido)
+DELETE http://localhost:3000/products/67970bee7926d4dded38be17
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczNzk1MjA5MSwiZXhwIjoxNzM3OTU1NjkxfQ.UY1W3yPk0l0-bC3dg4NpaMXUJ_unGfNwaMmFDOaFdjI
+
+### Obtener el historial de compras del usuario (protegido)
+GET http://localhost:3000/purchases
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczNzk1MjA5MSwiZXhwIjoxNzM3OTU1NjkxfQ.UY1W3yPk0l0-bC3dg4NpaMXUJ_unGfNwaMmFDOaFdjI
+
+### Crear una nueva compra (protegido)
+POST http://localhost:3000/purchases
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczNzk1MjA5MSwiZXhwIjoxNzM3OTU1NjkxfQ.UY1W3yPk0l0-bC3dg4NpaMXUJ_unGfNwaMmFDOaFdjI
+Content-Type: application/json
+
+{
+    "products": [
+        {
+            "productId": "67970ba77926d4dded38be0e",
+            "quantity": 2
+        },
+        {
+            "productId": "67970bc07926d4dded38be10",
+            "quantity": 1
+        }
+    ],
+    "paymentMethod": "tarjeta",
+    "serveOption": "mesa"
+}
+
+### Actualizar el estado de una compra (protegido)
+PUT http://localhost:3000/purchases/67970c1a7926d4dded38be1f/status
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczNzk1MjA5MSwiZXhwIjoxNzM3OTU1NjkxfQ.UY1W3yPk0l0-bC3dg4NpaMXUJ_unGfNwaMmFDOaFdjI
+Content-Type: application/json
+
+{
+    "status": "completed"
+}
