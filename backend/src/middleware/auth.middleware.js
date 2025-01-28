@@ -11,11 +11,12 @@ const authMiddleware = (req, res, next) => {
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const tokenWithoutBearer = token.replace('Bearer ', ''); // Elimina "Bearer " del token
+        const decoded = jwt.verify(tokenWithoutBearer, process.env.JWT_SECRET);
         req.userId = decoded.id;
         next();
     } catch (err) {
-        res.status(400).json({ message: 'Token inválido.' });
+        res.status(401).json({ message: 'Token inválido.' });
     }
 };
 

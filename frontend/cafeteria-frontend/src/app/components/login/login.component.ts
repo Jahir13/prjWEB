@@ -16,7 +16,7 @@ export class LoginComponent {
   onSubmit(): void {
     this.authService.login(this.credentials).subscribe(
       () => {
-        this.router.navigate(['/menu']); // Redirige al menú después del login
+        this.router.navigate(['/menu']);
       },
       (error) => {
         this.errorMessage = 'Credenciales inválidas. Inténtalo de nuevo.';
