@@ -1,28 +1,26 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-<nav class="fixed w-full backdrop-blur-sm bg-black/30 px-4 py-2.5 z-50">
+<nav class="bg-black bg-opacity-60 border-b border-gray-700 px-4 py-2.5">
   <div class="flex justify-between items-center max-w-7xl mx-auto">
-    <!-- Left side navigation items -->
     <div class="flex space-x-8 items-center">
-      <a routerLink="/nosotros" class="text-white hover:text-gray-300 transition-colors duration-200">NOSOTROS</a>
-      <a routerLink="/menu" class="text-white hover:text-gray-300 transition-colors duration-200">MENU</a>
-      <a routerLink="/admin" class="text-white hover:text-gray-300 transition-colors duration-200">MENU ADMIN</a>
-      <a routerLink="/ordenar" class="text-white hover:text-gray-300 transition-colors duration-200">ORDENAR</a>
+      <a routerLink="/nosotros" class="text-white hover:text-gray-300">NOSOTROS</a>
+      <a routerLink="/menu" class="text-white hover:text-gray-300">MENU</a>
+      <a routerLink="/admin" class="text-white hover:text-gray-300">MENU ADMIN</a>
+      <a routerLink="/order" class="text-white hover:text-gray-300">ORDENAR</a>
     </div>
 
-    <!-- Right side with user name and icons -->
     <div class="flex items-center space-x-6">
-      <span class="text-white font-light">Jahir Rocha</span>
-      <!-- Social Media Icons -->
+      <span class="text-white">
+        <a routerLink="/profile" class="hover:text-gray-300">Mi Cuenta</a>
+      </span>
       <div class="flex items-center space-x-4">
-        <a href="#" class="text-white hover:text-gray-300 transition-colors duration-200">
+        <a href="#" class="text-white hover:text-gray-300">
           <i class="fab fa-twitter text-xl"></i>
         </a>
-        <a href="#" class="text-white hover:text-gray-300 transition-colors duration-200">
+        <a href="#" class="text-white hover:text-gray-300">
           <i class="fab fa-instagram text-xl"></i>
         </a>
       </div>
-      <!-- Cart Icon with Counter -->
       <div class="relative">
         <i class="fas fa-shopping-cart text-xl text-white"></i>
         <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">

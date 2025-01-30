@@ -15,11 +15,24 @@ exports.getProductById = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
     try {
         const products = await Product.find();
-        res.status(200).json(products);
+
+        const groupedProducts = products.reduce((acc, product) => {
+            const category = product.category;
+            if (!acc[category]) {
+                acc[category] = { name: category, description: "", products: [] };
+            }
+            acc[category].products.push(product);
+            return acc;
+        }, {});
+
+        const categoriesArray = Object.values(groupedProducts);
+
+        res.status(200).json(categoriesArray);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 };
+
 
 exports.createProduct = async (req, res) => {
     const product = new Product({
