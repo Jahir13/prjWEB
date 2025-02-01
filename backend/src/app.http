@@ -19,45 +19,45 @@ Content-Type: application/json
 
 ### Obtener todos los productos (protegido)
 GET http://localhost:3000/products
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODIxMDYyMywiZXhwIjoxNzM4MjE0MjIzfQ.cbLIZygJb12KYBlKR5QfR3KCg_mf8RGIR-n2707HG9Q
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODM3NzUzOCwiZXhwIjoxNzM4MzgxMTM4fQ.kk9kwarnId10tCZ0QQMGWeCA8WeiDIcaFOVKJdXJshU
 ###Obtener un producto por ID (protegido)
 GET http://localhost:3000/products/679ae3c9a895981afecd77fd
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODIxMDYyMywiZXhwIjoxNzM4MjE0MjIzfQ.cbLIZygJb12KYBlKR5QfR3KCg_mf8RGIR-n2707HG9Q
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODM3NzUzOCwiZXhwIjoxNzM4MzgxMTM4fQ.kk9kwarnId10tCZ0QQMGWeCA8WeiDIcaFOVKJdXJshU
 
 ### Crear un nuevo producto (protegido)
 POST http://localhost:3000/products
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODIxMDYyMywiZXhwIjoxNzM4MjE0MjIzfQ.cbLIZygJb12KYBlKR5QfR3KCg_mf8RGIR-n2707HG9Q
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODM3NzUzOCwiZXhwIjoxNzM4MzgxMTM4fQ.kk9kwarnId10tCZ0QQMGWeCA8WeiDIcaFOVKJdXJshU
 Content-Type: application/json
 
 {
-    "name": "Capuccino",
-    "description": "Bebida caliente con café y leche",
-    "price": 5,
-    "image": "https://example.com/brownie.jpg",
-    "category": "Bebidas Calientes"
+    "name": "Tiramisú",
+    "description": "Postre italiano con bizcocho empapado en café, queso mascarpone y cacao en polvo.",
+    "price": 3,
+    "image": "http://localhost:3000/uploads/tiramisu.jpg",
+    "category": "Postres"
 }
 
 ### Actualizar un producto (protegido)
-PUT http://localhost:3000/products/679ae3c9a895981afecd77fd
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODIxMDYyMywiZXhwIjoxNzM4MjE0MjIzfQ.cbLIZygJb12KYBlKR5QfR3KCg_mf8RGIR-n2707HG9Q
+PUT http://localhost:3000/products/679d93492fd1c8f0451d986f
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODM3NzUzOCwiZXhwIjoxNzM4MzgxMTM4fQ.kk9kwarnId10tCZ0QQMGWeCA8WeiDIcaFOVKJdXJshU
 Content-Type: application/json
 
 {
-    "price": 5.50
+    "price": 3
 }
 
 ### Eliminar un producto (protegido)
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODM3NzUzOCwiZXhwIjoxNzM4MzgxMTM4fQ.kk9kwarnId10tCZ0QQMGWeCA8WeiDIcaFOVKJdXJshU
 DELETE http://localhost:3000/products/679ae3c9a895981afecd77fd
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODIxMDYyMywiZXhwIjoxNzM4MjE0MjIzfQ.cbLIZygJb12KYBlKR5QfR3KCg_mf8RGIR-n2707HG9Q
 
 
 ### Obtener el historial de compras del usuario (protegido)
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODM3NzUzOCwiZXhwIjoxNzM4MzgxMTM4fQ.kk9kwarnId10tCZ0QQMGWeCA8WeiDIcaFOVKJdXJshU
 GET http://localhost:3000/purchases
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODIxMDYyMywiZXhwIjoxNzM4MjE0MjIzfQ.cbLIZygJb12KYBlKR5QfR3KCg_mf8RGIR-n2707HG9Q
 
 ### Crear una nueva compra (protegido)
 POST http://localhost:3000/purchases
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODIxMDYyMywiZXhwIjoxNzM4MjE0MjIzfQ.cbLIZygJb12KYBlKR5QfR3KCg_mf8RGIR-n2707HG9Q
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODM3NzUzOCwiZXhwIjoxNzM4MzgxMTM4fQ.kk9kwarnId10tCZ0QQMGWeCA8WeiDIcaFOVKJdXJshUt-Type: application/json
 Content-Type: application/json
 
 {
@@ -73,7 +73,6 @@ Content-Type: application/json
 
 ### Actualizar el estado de una compra (protegido)
 PUT http://localhost:3000/purchases/679ae9f6ba6b45fd030af926/status
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODIwMzY3OCwiZXhwIjoxNzM4MjA3Mjc4fQ.BL8YAkK-xstd9kpoMfJmcc-fyGFFNOtwundSU-E6e6E
 Content-Type: application/json
 
 {

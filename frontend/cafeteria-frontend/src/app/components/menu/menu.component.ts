@@ -16,12 +16,12 @@ export class MenuComponent implements OnInit {
   }
 
   loadProducts(): void {
-    this.productService.getProducts().subscribe((products) => {
-      this.categories = this.groupByCategory(products);
+    this.productService.getProducts().subscribe((categories) => {
+      this.categories = categories;
     }, (error) => {
       console.error('Error al obtener los productos:', error);
     });
-  }
+  }  
 
   groupByCategory(products: any[]): any[] {
     const categoryMap = new Map();
