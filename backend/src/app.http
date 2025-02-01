@@ -38,12 +38,13 @@ Content-Type: application/json
 }
 
 ### Actualizar un producto (protegido)
-PUT http://localhost:3000/products/679d93492fd1c8f0451d986f
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODM3NzUzOCwiZXhwIjoxNzM4MzgxMTM4fQ.kk9kwarnId10tCZ0QQMGWeCA8WeiDIcaFOVKJdXJshU
+PUT http://localhost:3000/products/679d8fe62fd1c8f0451d986d
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3OTcwYjU4NzkyNmQ0ZGRlZDM4YmUwYSIsImlhdCI6MTczODM4MTQ5NywiZXhwIjoxNzM4Mzg1MDk3fQ.YOAxMgY6k-UhDujdHgRRoztvlCG5EPGE7FibWH3v9Xc
 Content-Type: application/json
 
 {
-    "price": 3
+    "image": "http://localhost:3000/uploads/brew.jpeg"
+
 }
 
 ### Eliminar un producto (protegido)

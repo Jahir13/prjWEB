@@ -7,26 +7,37 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-  products: any[] = [];
-  cart: any[] = [];
+  categories: any[] = [];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    console.log('Cargando productos...');
-    this.productService.getProducts().subscribe(
-      (data) => {
-        console.log('Productos obtenidos:', data);
-        this.products = data;
-      },
-      (error) => {
-        console.error('Error al obtener los productos:', error);
-      }
-    );
+    this.loadProducts();
   }
 
-  addToCart(product: any): void {
-    this.cart.push(product);
-    console.log('Producto agregado al carrito:', product);
+  loadProducts(): void {
+    this.productService.getProducts().subscribe((categories) => {
+      this.categories = categories;
+    }, (error) => {
+      console.error('Error al obtener los productos:', error);
+    });
   }
+  
+  groupByCategory(products: any[]): any[] {
+    const categoryMap = new Map();
+
+    products.forEach(product => {
+      if (!categoryMap.has(product.category)) {
+        categoryMap.set(product.category, {
+          name: product.category,
+          description: '',
+          products: []
+        });
+      }
+      categoryMap.get(product.category).products.push(product);
+    });
+
+    return Array.from(categoryMap.values());
+  }
+
 }

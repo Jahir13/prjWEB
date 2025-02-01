@@ -30,7 +30,7 @@ export class MenuComponent implements OnInit {
       if (!categoryMap.has(product.category)) {
         categoryMap.set(product.category, {
           name: product.category,
-          description: '', // Puedes asignar una descripción si la API la proporciona
+          description: '',
           products: []
         });
       }

@@ -22,11 +22,12 @@
         </a>
       </div>
       <div class="relative">
-        <i class="fas fa-shopping-cart text-xl text-white"></i>
-        <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-          2
-        </span>
+        <button (click)="toggleCarrito()" class="relative">
+          <i class="fas fa-shopping-cart text-xl text-white"></i>
+        </button>
       </div>
     </div>
   </div>
 </nav>
+
+<app-carrito *ngIf="mostrarCarrito" (cerrar)="toggleCarrito()"></app-carrito>
