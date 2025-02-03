@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  user: any = null; // Inicialmente no hay usuario
+  user: any = null;
   purchases: any[] = [];
-  showLogin: boolean = true; // Mostrar login por defecto
+  showLogin: boolean = true;
   errorMessage: string = '';
-  credentials = { email: '', password: '' }; // Propiedad credentials agregada
+  credentials = { email: '', password: '' };
 
   constructor(
     private purchaseService: PurchaseService,
@@ -23,7 +23,7 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getCurrentUser().subscribe(
-      (user: any) => { // Tipo explícito para 'user'
+      (user: any) => {
         if (user) {
           this.user = user;
           this.loadPurchaseHistory();
@@ -31,7 +31,7 @@ export class UserProfileComponent implements OnInit {
           this.user = null;
         }
       },
-      (error: any) => { // Tipo explícito para 'error'
+      (error: any) => {
         console.error('Error al obtener el usuario actual:', error);
       }
     );
@@ -39,19 +39,20 @@ export class UserProfileComponent implements OnInit {
 
   loadPurchaseHistory(): void {
     this.purchaseService.getPurchaseHistory().subscribe(
-      (data: any) => {
-        this.purchases = data;
-      },
-      (error: any) => {
-        console.error('Error al obtener el historial de compras:', error);
-      }
+        (data: any) => {
+            this.purchases = data;
+        },
+        (error: any) => {
+            console.error('Error al obtener el historial de compras:', error);
+            this.errorMessage = 'No se pudo cargar el historial de compras. Inténtalo de nuevo más tarde.';
+        }
     );
-  }
+}
 
   onLogin(credentials: { email: string, password: string }): void {
     this.authService.login(credentials).subscribe(
       () => {
-        this.router.navigate(['/profile']); // Recargar la página de perfil
+        this.router.navigate(['/profile']);
       },
       (error: any) => {
         this.errorMessage = 'Credenciales inválidas. Inténtalo de nuevo.';
@@ -63,7 +64,7 @@ export class UserProfileComponent implements OnInit {
   onRegister(user: { name: string, email: string, password: string }): void {
     this.authService.register(user).subscribe(
       () => {
-        this.router.navigate(['/profile']); // Recargar la página de perfil
+        this.router.navigate(['/profile']);
       },
       (error: any) => {
         this.errorMessage = 'Error en el registro. Inténtalo de nuevo.';
@@ -74,11 +75,11 @@ export class UserProfileComponent implements OnInit {
 
   toggleForm(): void {
     this.showLogin = !this.showLogin;
-    this.errorMessage = ''; // Limpiar mensajes de error al cambiar de formulario
+    this.errorMessage = '';
   }
   
   logout(): void {
     this.authService.logout();
-    this.router.navigate(['/login']); // Redirige al usuario a la página de login
+    this.router.navigate(['/login']);
   }
 }

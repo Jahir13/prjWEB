@@ -9,10 +9,10 @@ import { HomeComponent } from './components/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { OrderComponent } from './components/order/order.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
-import { AdminMenuComponent } from './components/admin-menu/admin-menu.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
+import { SumPipe } from './pipes/sum.pipe';
 
 @NgModule({
   declarations: [
@@ -22,10 +22,10 @@ import { CarritoComponent } from './components/carrito/carrito.component';
     MenuComponent,
     OrderComponent,
     UserProfileComponent,
-    AdminMenuComponent,
     LoginComponent,
     RegisterComponent,
-    CarritoComponent
+    CarritoComponent,
+    SumPipe
   ],
   imports: [
     BrowserModule,

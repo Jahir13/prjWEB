@@ -1,31 +1,54 @@
 <div class="container mx-auto p-4">
-  <h1 class="text-3xl font-bold mb-4">Mi Cuenta</h1>
-
-  <div *ngIf="user; else authForms">
-    <div class="bg-white p-4 rounded-lg shadow-lg">
+  <h1 class="text-3xl font-bold mb-4 text-center">Mi Cuenta</h1>
+  <div *ngIf="user; else authForms" class="space-y-8">
+    <!-- Información Personal -->
+    <div class="bg-white p-6 rounded-lg shadow-lg">
       <h2 class="text-xl font-bold mb-4">Información Personal</h2>
-      <p><strong>Nombre:</strong> {{ user.name }}</p>
-      <p><strong>Email:</strong> {{ user.email }}</p>
+      <div class="flex flex-col space-y-2">
+        <p class="flex items-center"><strong class="mr-2">Nombre:</strong> {{ user.name }}</p>
+        <p class="flex items-center"><strong class="mr-2">Email:</strong> {{ user.email }}</p>
+      </div>
     </div>
 
-    <div class="mt-4">
-      <button (click)="logout()" class="bg-red-500 text-white px-4 py-2 rounded-lg">
+    <!-- Botón de Cerrar Sesión -->
+    <div class="flex justify-center">
+      <button (click)="logout()" class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-300">
         Cerrar Sesión
       </button>
     </div>
 
-    <div class="mt-8">
+    <!-- Historial de Compras -->
+    <div class="bg-white p-6 rounded-lg shadow-lg">
       <h2 class="text-xl font-bold mb-4">Historial de Compras</h2>
-      <div *ngFor="let purchase of purchases" class="bg-white p-4 rounded-lg shadow-lg mb-4">
-        <p><strong>Fecha:</strong> {{ purchase.purchaseDate | date }}</p>
-        <p><strong>Total:</strong> ${{ purchase.totalAmount }}</p>
+      <div *ngIf="purchases.length > 0" class="space-y-4">
+        <div *ngFor="let purchase of purchases" class="bg-gray-100 p-4 rounded-lg shadow-sm mb-4">
+          <div class="flex flex-col space-y-2">
+            <p class="flex items-center"><strong class="mr-2">Fecha:</strong> {{ purchase.purchaseDate | date }}</p>
+            <p class="flex items-center"><strong class="mr-2">Total:</strong> ${{ purchase.totalAmount }}</p>
+            <p class="flex items-center"><strong class="mr-2">Método de Pago:</strong> {{ purchase.paymentMethod }}</p>
+            <p class="flex items-center"><strong class="mr-2">Opción de Servicio:</strong> {{ purchase.serveOption }}</p>
+            <p class="flex items-center"><strong class="mr-2">Estado:</strong> {{ purchase.status }}</p>
+          </div>
+          <div *ngIf="purchase.products.length > 0" class="mt-4">
+            <p class="font-bold">Productos:</p>
+            <ul class="list-disc pl-4 space-y-1">
+              <li *ngFor="let product of purchase.products">
+                {{ product.productId.name }} - Cantidad: {{ product.quantity }} - Precio: ${{ product.price }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="purchases.length === 0" class="flex flex-col items-center justify-center h-64">
+        <p class="text-gray-500">Todavía no ha realizado ningún pedido.</p>
+        <a href="#" class="text-blue-500 underline mt-4">Comenzar a navegar</a>
       </div>
     </div>
   </div>
 
   <ng-template #authForms>
-    <div *ngIf="showLogin; else registerForm">
-      <h2 class="text-2xl font-bold mb-4">Iniciar Sesión</h2>
+    <div *ngIf="showLogin; else registerForm" class="space-y-8">
+      <h2 class="text-2xl font-bold mb-4 text-center">Iniciar Sesión</h2>
       <form (ngSubmit)="onLogin(credentials)" class="bg-white p-6 rounded-lg shadow-lg">
         <div class="mb-4">
           <label for="email" class="block text-gray-700">Email</label>
@@ -35,14 +58,16 @@
           <label for="password" class="block text-gray-700">Contraseña</label>
           <input type="password" id="password" [(ngModel)]="credentials.password" name="password" class="w-full p-2 border rounded-lg" required>
         </div>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Iniciar Sesión</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-600 transition duration-300">
+          Iniciar Sesión
+        </button>
         <p *ngIf="errorMessage" class="text-red-500 mt-4">{{ errorMessage }}</p>
       </form>
-      <p class="mt-4">¿No tienes una cuenta? <a (click)="toggleForm()" class="text-blue-500 cursor-pointer">Regístrate aquí</a>.</p>
+      <p class="text-center mt-4">¿No tienes una cuenta? <a (click)="toggleForm()" class="text-blue-500 cursor-pointer">Regístrate aquí</a>.</p>
     </div>
 
     <ng-template #registerForm>
-      <h2 class="text-2xl font-bold mb-4">Registro</h2>
+      <h2 class="text-2xl font-bold mb-4 text-center">Registro</h2>
       <form (ngSubmit)="onRegister(user)" class="bg-white p-6 rounded-lg shadow-lg">
         <div class="mb-4">
           <label for="name" class="block text-gray-700">Nombre</label>
@@ -56,10 +81,12 @@
           <label for="password" class="block text-gray-700">Contraseña</label>
           <input type="password" id="password" [(ngModel)]="user.password" name="password" class="w-full p-2 border rounded-lg" required>
         </div>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg">Registrarse</button>
+        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg w-full hover:bg-blue-600 transition duration-300">
+          Registrarse
+        </button>
         <p *ngIf="errorMessage" class="text-red-500 mt-4">{{ errorMessage }}</p>
       </form>
-      <p class="mt-4">¿Ya tienes una cuenta? <a (click)="toggleForm()" class="text-blue-500 cursor-pointer">Inicia sesión aquí</a>.</p>
+      <p class="text-center mt-4">¿Ya tienes una cuenta? <a (click)="toggleForm()" class="text-blue-500 cursor-pointer">Inicia sesión aquí</a>.</p>
     </ng-template>
   </ng-template>
 </div>

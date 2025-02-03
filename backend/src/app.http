@@ -65,6 +65,9 @@ Content-Type: application/json
     "products": [
         {
             "productId": "679ae99aba6b45fd030af91c",
+            "quantity": 2,
+
+            "productId": "679ae99aba6b45fd030af91c",
             "quantity": 2
         }
     ],

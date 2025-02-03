@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http'; // Importa HttpHeaders
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { tap, catchError } from 'rxjs/operators'; // Importa catchError
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -11,23 +11,24 @@ export class AuthService {
     private currentUserSubject = new BehaviorSubject<any>(null);
     public currentUser$ = this.currentUserSubject.asObservable();
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+        this.loadUserFromStorage();
+    }
 
-    // Método para registrar un nuevo usuario
     register(user: { name: string, email: string, password: string }): Observable<any> {
         return this.http.post(`${this.apiUrl}/register`, user);
     }
 
-    // Método para iniciar sesión
     login(credentials: { email: string, password: string }): Observable<any> {
         return this.http.post(`${this.apiUrl}/login`, credentials).pipe(
             tap((response: any) => {
                 localStorage.setItem('token', response.token);
+                localStorage.setItem('userId', response.userId);
                 this.getCurrentUser().subscribe();
             }),
             catchError((error: HttpErrorResponse) => {
                 console.error('Error en el login:', error);
-                throw error; // Puedes manejar el error de manera más específica aquí
+                throw error;
             })
         );
     }
@@ -36,7 +37,7 @@ export class AuthService {
         const token = localStorage.getItem('token');
         if (token) {
             const headers = new HttpHeaders({
-                'Authorization': `Bearer ${token}` // Incluye el token en la cabecera
+                'Authorization': `Bearer ${token}`
             });
     
             return this.http.get(`${this.apiUrl}/me`, { headers }).pipe(
@@ -55,14 +56,24 @@ export class AuthService {
         }
     }
 
-    // Método para verificar si el usuario está autenticado
-    isAuthenticated(): boolean {
+    isLoggedIn(): boolean {
         return !!localStorage.getItem('token');
     }
 
-    // Método para cerrar sesión
+    getUserId(): string | null {
+        return localStorage.getItem('userId');
+    }
+
     logout(): void {
         localStorage.removeItem('token');
+        localStorage.removeItem('userId');
         this.currentUserSubject.next(null);
+    }
+
+    private loadUserFromStorage(): void {
+        const userId = localStorage.getItem('userId');
+        if (userId) {
+            this.getCurrentUser().subscribe();
+        }
     }
 }

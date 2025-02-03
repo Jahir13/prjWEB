@@ -79,12 +79,3 @@ exports.createPurchase = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
-
-exports.getPurchaseHistory = async (req, res) => {
-    try {
-        const purchases = await Purchase.find({ userId: req.userId }).populate('products.productId');
-        res.status(200).json(purchases);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-};
