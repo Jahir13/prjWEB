@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { SumPipe } from './pipes/sum.pipe';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SumPipe } from './pipes/sum.pipe';
     LoginComponent,
     RegisterComponent,
     CarritoComponent,
-    SumPipe
+    SumPipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

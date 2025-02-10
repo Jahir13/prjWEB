@@ -33,12 +33,10 @@ exports.createPurchase = async (req, res) => {
     try {
         const { products, paymentMethod, serveOption } = req.body;
 
-        // Validar que los productos sean un array y no esté vacío
         if (!Array.isArray(products) || products.length === 0) {
             return res.status(400).json({ message: 'Debe proporcionar al menos un producto.' });
         }
 
-        // Validar que la cantidad sea un número positivo
         for (const item of products) {
             if (typeof item.quantity !== 'number' || item.quantity <= 0) {
                 return res.status(400).json({ message: 'La cantidad debe ser un número positivo.' });
@@ -68,9 +66,9 @@ exports.createPurchase = async (req, res) => {
             userId: req.userId,
             products: productsWithPrice,
             totalAmount,
-            paymentMethod, // Método de pago
-            serveOption,   // Opción de servir en mesa o llevar
-            status: 'pending', // Estado inicial de la compra
+            paymentMethod,
+            serveOption,
+            status: 'pending',
         });
 
         await purchase.save();

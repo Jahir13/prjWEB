@@ -29,17 +29,17 @@ const purchaseSchema = new mongoose.Schema({
     },
     paymentMethod: {
         type: String,
-        enum: ['efectivo', 'tarjeta'], // Métodos de pago permitidos
+        enum: ['efectivo', 'tarjeta'],
         required: true,
     },
     serveOption: {
         type: String,
-        enum: ['mesa', 'llevar'], // Opciones de servir
+        enum: ['mesa', 'llevar'],
         required: true,
     },
     status: {
         type: String,
-        enum: ['pending', 'completed', 'cancelled'], // Estados de la compra
+        enum: ['pending', 'completed', 'cancelled'],
         default: 'pending',
     },
     purchaseDate: {
